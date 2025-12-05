@@ -5,6 +5,10 @@
 ![Qdrant](https://img.shields.io/badge/qdrant-vector--db-green.svg)
 ![Gemini](https://img.shields.io/badge/google--gemini-2.5--flash-orange.svg)
 
+## 📖 **Video Demo**
+
+https://github.com/user-attachments/assets/c0a322ef-06ad-4708-a6c9-ec43a8f9f7ef
+
 ## 📖 **Project Overview**
 
 SudoTalk is an intelligent Retrieval-Augmented Generation (RAG) system built with Streamlit that allows users to upload PDF documents and have interactive conversations about their content. The application uses advanced AI technologies to understand document context and provide accurate, contextual responses.
