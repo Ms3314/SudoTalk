@@ -1,6 +1,6 @@
 # we need to make a Streamlit based RAG pdf/web LLM agent 
 import streamlit as st
-from indexing import indexing
+from app.indexing import indexing
 from dotenv import load_dotenv
 import os 
 
