@@ -44,21 +44,34 @@ class VectorDB:
         
     
     def creatDB(self , collection_name):
-        self.__CreateEmbeddingModel(self)
-        self.__createCollection(self ,collection_name)
-        self.__createVectorStore(self)
+        self.__CreateEmbeddingModel()
+        self.__createCollection(collection_name)
+        self.__createVectorStore()
+        print(f"🗄️ Vector DB created/connected with collection: {collection_name}")
     
     def __createCollection(self , collection_name):
         self._collection_name = collection_name
-        if self._client.collection_exists(collection_name) != True:
+        if not self._client.collection_exists(collection_name):
             self._client.create_collection(
                 collection_name=collection_name,
                 vectors_config=VectorParams(size=768,distance=Distance.COSINE)
             )
+            print(f"📚 Created new collection: {collection_name}")
+        else:
+            print(f"📚 Using existing collection: {collection_name}")
+            
     def add_documents(self , documents):
+        if not hasattr(self, '_vectorStore'):
+            self.creatDB("documents")
         self._vectorStore.add_documents(documents)
+        print(f"➕ Added {len(documents)} documents to vector store")
         
-    def similarity_search(self , query):
-        return self._vectorStore.similarity_search(query)
+    def similarity_search(self , query, k=4):
+        if not hasattr(self, '_vectorStore'):
+            self.creatDB("documents")   
+        results = self._vectorStore.similarity_search(query, k=k)
+        print(f"🔍 Retrieved {len(results)} similar documents for query")
+        return results
+        
 
-model = VectorDB()
+model = VectorDB()  
